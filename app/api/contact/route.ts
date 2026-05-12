@@ -12,15 +12,19 @@ async function sendNotificationEmail(data: {
   const user = process.env.GMAIL_USER;
   const pass = process.env.GMAIL_APP_PASSWORD;
 
-  // Skip email if credentials not configured
-  if (!user || !pass) return;
+  console.log("[contact] GMAIL_USER set:", !!user, "| GMAIL_APP_PASSWORD set:", !!pass);
+
+  if (!user || !pass) {
+    console.warn("[contact] Email env vars missing — skipping email send");
+    return;
+  }
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: { user, pass },
   });
 
-  await transporter.sendMail({
+  const info = await transporter.sendMail({
     from: `"Sajt – Kontakt forma" <${user}>`,
     to: "dejanjovanovic.adv@gmail.com",
     replyTo: data.email,
@@ -47,6 +51,8 @@ async function sendNotificationEmail(data: {
       </div>
     `,
   });
+
+  console.log("[contact] Email sent — messageId:", info.messageId);
 }
 
 export async function POST(request: NextRequest) {
@@ -60,7 +66,6 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Save to Supabase
   const { error } = await supabase.from("contact_submissions").insert([
     {
       name,
@@ -72,13 +77,16 @@ export async function POST(request: NextRequest) {
   ]);
 
   if (error) {
+    console.error("[contact] Supabase error:", error.message);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  // Send email notification (non-blocking – won't fail the request if email fails)
-  sendNotificationEmail({ name, email, phone, subject, message }).catch(
-    (err) => console.error("Email send error:", err)
-  );
+  // Awaited so errors appear in Vercel logs
+  try {
+    await sendNotificationEmail({ name, email, phone, subject, message });
+  } catch (err) {
+    console.error("[contact] Email FAILED:", err);
+  }
 
   return NextResponse.json({ success: true }, { status: 200 });
 }
