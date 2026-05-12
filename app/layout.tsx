@@ -3,6 +3,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import TawkTo from "@/components/TawkTo";
 import { Analytics } from "@vercel/analytics/next";
 import { LanguageProvider } from "@/components/LanguageContext";
 
@@ -45,6 +46,7 @@ export default function RootLayout({
           <Footer />
         </LanguageProvider>
         <Analytics />
+        <TawkTo />
       </body>
     </html>
   );
