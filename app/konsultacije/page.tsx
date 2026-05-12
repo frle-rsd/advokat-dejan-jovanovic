@@ -9,28 +9,33 @@ export default function KonsultacijePage() {
     sr: {
       badge: "Online konsultacije",
       heading: "Postavite pitanje",
-      sub: "Pišite mi direktno — odgovaram u toku radnog vremena, ponedeljak do petak od 09:00 do 17:00.",
-      note: "Ako sam trenutno nedostupan, ostavite poruku i odgovoriti ću čim budem u mogućnosti.",
+      sub: "Pišite mi direktno — odgovaram radnim danima od 09:00 do 17:00.",
+      step: "Kliknite na \"Nova konverzacija\" u chatu ispod da započnete razgovor",
+      note: "Ako sam trenutno nedostupan, ostavite poruku — odgovoriti ću čim budem u mogućnosti.",
       cards: [
-        { icon: "💬", title: "Direktna poruka", desc: "Bez registracije, bez čekanja. Ukucajte pitanje i pošaljite." },
-        { icon: "🔒", title: "Diskretno", desc: "Vaša pitanja su privatna. Informacije o klijentima ne delim sa trećim licima." },
-        { icon: "⚡", title: "Brz odgovor", desc: "Tokom radnog vremena obično odgovaram u roku od nekoliko minuta." },
+        { icon: "💬", title: "Direktna poruka", desc: "Bez registracije. Ukucajte pitanje i pošaljite." },
+        { icon: "🔒", title: "Diskretno", desc: "Vaša pitanja su privatna. Ne delim informacije sa trećim licima." },
+        { icon: "⚡", title: "Brz odgovor", desc: "Tokom radnog vremena odgovaram u roku od nekoliko minuta." },
       ],
     },
     en: {
       badge: "Online consultations",
       heading: "Ask a question",
-      sub: "Write to me directly — I respond during business hours, Monday to Friday from 09:00 to 17:00.",
-      note: "If I'm unavailable at the moment, leave a message and I'll get back to you as soon as possible.",
+      sub: "Write to me directly — I respond on business days from 09:00 to 17:00.",
+      step: "Click \"New Conversation\" in the chat below to start",
+      note: "If I'm unavailable, leave a message — I'll get back to you as soon as possible.",
       cards: [
-        { icon: "💬", title: "Direct message", desc: "No registration, no waiting. Type your question and send." },
-        { icon: "🔒", title: "Discreet", desc: "Your questions are private. I do not share client information with third parties." },
+        { icon: "💬", title: "Direct message", desc: "No registration needed. Type your question and send." },
+        { icon: "🔒", title: "Discreet", desc: "Your questions are private. I don't share information with third parties." },
         { icon: "⚡", title: "Quick reply", desc: "During business hours I usually respond within a few minutes." },
       ],
     },
   };
 
   const c = content[lang];
+
+  // Tawk.to supports ?lang= parameter in the embed URL
+  const chatUrl = `https://tawk.to/chat/6a03ad848acb811c3685583f/1jof5rje8?lang=${lang === "sr" ? "sr" : "en"}`;
 
   return (
     <>
@@ -62,11 +67,18 @@ export default function KonsultacijePage() {
           ))}
         </div>
 
+        {/* Step hint */}
+        <div className="max-w-3xl mx-auto mb-3 flex items-center gap-2 text-sm text-[#1a2744]/60">
+          <span className="w-5 h-5 rounded-full bg-[#c9a84c] text-white text-xs flex items-center justify-center font-bold shrink-0">1</span>
+          {c.step}
+        </div>
+
         {/* Embedded chat */}
         <div className="max-w-3xl mx-auto">
-          <div className="rounded-sm overflow-hidden border border-gray-200 shadow-md" style={{ height: 500 }}>
+          <div className="rounded-sm overflow-hidden border border-gray-200 shadow-md" style={{ height: 520 }}>
             <iframe
-              src="https://tawk.to/chat/6a03ad848acb811c3685583f/1jof5rje8"
+              key={lang}
+              src={chatUrl}
               title="Live chat"
               width="100%"
               height="100%"
