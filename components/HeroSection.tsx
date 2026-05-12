@@ -1,15 +1,23 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import {
+  motion,
+  useInView,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  useMotionTemplate,
+  animate,
+} from "framer-motion";
 import { useEffect, useRef } from "react";
 import { useLanguage } from "@/components/LanguageContext";
 
-// Animated counter that counts from 0 to `to` when it enters the viewport
+// Animated counter — counts from 0 to `to` when it scrolls into view
 function CountUp({
   to,
   suffix = "",
-  duration = 1.8,
+  duration = 2.8,
 }: {
   to: number;
   suffix?: string;
@@ -24,7 +32,7 @@ function CountUp({
     if (!inView) return;
     const controls = animate(count, to, {
       duration,
-      ease: [0.16, 1, 0.3, 1], // expo out
+      ease: [0.16, 1, 0.3, 1],
     });
     return controls.stop;
   }, [inView, count, to, duration]);
@@ -40,14 +48,33 @@ function CountUp({
 export default function HeroSection() {
   const { t, lang } = useLanguage();
 
+  // Mouse-tracking spotlight
+  const sectionRef = useRef<HTMLElement>(null);
+  const rawX = useMotionValue(50);
+  const rawY = useMotionValue(50);
+  const springX = useSpring(rawX, { stiffness: 50, damping: 18 });
+  const springY = useSpring(rawY, { stiffness: 50, damping: 18 });
+  const spotlightBg = useMotionTemplate`radial-gradient(ellipse 55% 55% at ${springX}% ${springY}%, rgba(201,168,76,0.10) 0%, transparent 65%)`;
+
+  function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
+    const rect = sectionRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    rawX.set(((e.clientX - rect.left) / rect.width) * 100);
+    rawY.set(((e.clientY - rect.top) / rect.height) * 100);
+  }
+
   const stats = [
-    { to: 5, suffix: "+", label: lang === "sr" ? "godina iskustva" : "years experience" },
-    { to: 200, suffix: "+", label: lang === "sr" ? "rešenih predmeta" : "cases resolved" },
-    { to: 100, suffix: "%", label: lang === "sr" ? "posvećenost" : "commitment" },
+    { to: 5, suffix: "+", label: lang === "sr" ? "godina iskustva" : "years experience", dur: 2.8 },
+    { to: 200, suffix: "+", label: lang === "sr" ? "rešenih predmeta" : "cases resolved", dur: 3.2 },
+    { to: 100, suffix: "%", label: lang === "sr" ? "posvećenost" : "commitment", dur: 2.5 },
   ];
 
   return (
-    <section className="relative min-h-[90vh] bg-[#1a2744] flex items-center overflow-hidden">
+    <section
+      ref={sectionRef}
+      onMouseMove={handleMouseMove}
+      className="relative min-h-[90vh] bg-[#1a2744] flex items-center overflow-hidden"
+    >
       {/* Subtle grid pattern */}
       <div
         className="absolute inset-0 opacity-[0.04]"
@@ -58,13 +85,19 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Central radial glow */}
+      {/* Static base glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%)",
+            "radial-gradient(ellipse 70% 50% at 50% 35%, rgba(201,168,76,0.05) 0%, transparent 70%)",
         }}
+      />
+
+      {/* Mouse-tracking spotlight — follows cursor with spring physics */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: spotlightBg }}
       />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 w-full py-24 text-center">
@@ -144,13 +177,13 @@ export default function HeroSection() {
           transition={{ delay: 0.9, duration: 0.6 }}
           className="flex items-center justify-center gap-0 mt-16 pt-10 border-t border-white/10"
         >
-          {stats.map(({ to, suffix, label }, i) => (
+          {stats.map(({ to, suffix, label, dur }, i) => (
             <div
               key={label}
               className={`text-center px-10 ${i !== 0 ? "border-l border-white/10" : ""}`}
             >
               <div className="text-[#c9a84c] font-heading font-bold text-3xl">
-                <CountUp to={to} suffix={suffix} duration={1.6 + i * 0.2} />
+                <CountUp to={to} suffix={suffix} duration={dur} />
               </div>
               <div className="text-gray-400 text-xs mt-1 uppercase tracking-wider">{label}</div>
             </div>

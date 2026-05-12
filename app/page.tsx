@@ -29,12 +29,13 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              <div className="relative overflow-hidden" style={{ aspectRatio: "4/5" }}>
+              <div className="relative">
                 <Image
                   src="/advokat-photo.jpg"
                   alt="Advokat Dejan Jovanović"
-                  fill
-                  className="object-cover object-top"
+                  width={480}
+                  height={640}
+                  className="w-full h-auto object-contain"
                 />
               </div>
               <div className="absolute -bottom-5 -right-5 w-28 h-28 border-4 border-[#c9a84c]/50 pointer-events-none" />
@@ -96,11 +97,11 @@ export default function Home() {
               </svg>
               +381 60 5000 362
             </a>
-            <a href="mailto:jovanovic92.law@gmail.com" className="flex items-center gap-3 text-gray-300 hover:text-[#c9a84c] transition-colors">
+            <a href="mailto:dejanjovanovic.adv@gmail.com" className="flex items-center gap-3 text-gray-300 hover:text-[#c9a84c] transition-colors">
               <svg className="w-5 h-5 text-[#c9a84c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              jovanovic92.law@gmail.com
+              dejanjovanovic.adv@gmail.com
             </a>
           </div>
           <Link
