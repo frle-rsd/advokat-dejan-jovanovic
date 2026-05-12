@@ -7,6 +7,7 @@ export const translations = {
       about: "O meni",
       practice: "Oblasti prava",
       blog: "Blog",
+      consult: "Konsultacije",
       contact: "Kontakt",
     },
     hero: {
@@ -252,6 +253,7 @@ export const translations = {
       about: "About me",
       practice: "Practice areas",
       blog: "Blog",
+      consult: "Consultations",
       contact: "Contact",
     },
     hero: {

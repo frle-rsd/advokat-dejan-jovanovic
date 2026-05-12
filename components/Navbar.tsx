@@ -46,6 +46,7 @@ export default function Navbar() {
     { href: "/o-meni", label: t.nav.about },
     { href: "/oblasti-prava", label: t.nav.practice },
     { href: "/blog", label: t.nav.blog },
+    { href: "/konsultacije", label: t.nav.consult, highlight: true },
     { href: "/kontakt", label: t.nav.contact },
   ];
 
@@ -80,21 +81,35 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-6 flex-1 justify-center">
-          {links.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className={`text-sm font-medium tracking-wide transition-colors duration-200 relative group whitespace-nowrap ${
-                isActive(href) ? "text-[#c9a84c]" : "text-gray-300 hover:text-white"
-              }`}
-            >
-              {label}
-              <span
-                className={`absolute -bottom-0.5 left-0 h-px bg-[#c9a84c] transition-all duration-300 ${
-                  isActive(href) ? "w-full" : "w-0 group-hover:w-full"
+          {links.map(({ href, label, highlight }) => (
+            highlight ? (
+              <Link
+                key={href}
+                href={href}
+                className={`text-sm font-semibold tracking-wide px-3.5 py-1.5 rounded-sm border transition-all duration-200 whitespace-nowrap ${
+                  isActive(href)
+                    ? "bg-[#c9a84c] text-[#1a2744] border-[#c9a84c]"
+                    : "text-[#c9a84c] border-[#c9a84c]/60 hover:bg-[#c9a84c] hover:text-[#1a2744] hover:border-[#c9a84c]"
                 }`}
-              />
-            </Link>
+              >
+                {label}
+              </Link>
+            ) : (
+              <Link
+                key={href}
+                href={href}
+                className={`text-sm font-medium tracking-wide transition-colors duration-200 relative group whitespace-nowrap ${
+                  isActive(href) ? "text-[#c9a84c]" : "text-gray-300 hover:text-white"
+                }`}
+              >
+                {label}
+                <span
+                  className={`absolute -bottom-0.5 left-0 h-px bg-[#c9a84c] transition-all duration-300 ${
+                    isActive(href) ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </Link>
+            )
           ))}
         </nav>
 
@@ -130,16 +145,18 @@ export default function Navbar() {
         }`}
       >
         <nav className="bg-[#111d36] px-4 py-2 border-t border-white/10">
-          {links.map(({ href, label }) => (
+          {links.map(({ href, label, highlight }) => (
             <Link
               key={href}
               href={href}
               onClick={() => setMenuOpen(false)}
               className={`flex items-center gap-3 py-3.5 text-sm font-medium border-b border-white/8 transition-colors last:border-0 ${
-                isActive(href) ? "text-[#c9a84c]" : "text-gray-300 hover:text-white"
+                highlight
+                  ? isActive(href) ? "text-[#c9a84c] font-semibold" : "text-[#c9a84c] font-semibold"
+                  : isActive(href) ? "text-[#c9a84c]" : "text-gray-300 hover:text-white"
               }`}
             >
-              <span className={`w-1 h-1 rotate-45 shrink-0 transition-colors ${isActive(href) ? "bg-[#c9a84c]" : "bg-transparent"}`} />
+              <span className={`w-1 h-1 rotate-45 shrink-0 transition-colors ${isActive(href) || highlight ? "bg-[#c9a84c]" : "bg-transparent"}`} />
               {label}
             </Link>
           ))}
