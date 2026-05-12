@@ -22,6 +22,13 @@ export const metadata: Metadata = {
   title: "Advokat Dejan Jovanović – Pravna Kancelarija Beograd",
   description:
     "Privatna advokatska praksa u Beogradu. Krivično, građansko, porodično i radno pravo. Direktna komunikacija, razumne cene.",
+  icons: {
+    icon: [
+      { url: "/logo.png", type: "image/png" },
+    ],
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({

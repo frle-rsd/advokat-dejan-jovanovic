@@ -34,12 +34,14 @@ export default function OMeniPage() {
               className="lg:col-span-2"
             >
               <div className="relative">
-                <div className="relative overflow-hidden" style={{ aspectRatio: "3/4" }}>
+                <div className="relative">
                   <Image
                     src="/advokat-photo.jpg"
                     alt="Advokat Dejan Jovanović"
-                    fill
-                    className="object-cover object-top"
+                    width={480}
+                    height={640}
+                    className="w-full h-auto object-contain"
+                    priority
                   />
                 </div>
                 <div className="absolute -bottom-4 -right-4 w-20 h-20 border-4 border-[#c9a84c]/40 pointer-events-none" />
