@@ -105,4 +105,97 @@ export const blogContent: Record<string, { sr: BlogPost; en: BlogPost }> = {
       ],
     },
   },
+
+  "kupovina-stana-depozit-zastita": {
+    sr: {
+      slug: "kupovina-stana-depozit-zastita",
+      title: "Kupujem stan – kako da zaštitim depozit i ne budem prevaren",
+      date: "10. mart 2026.",
+      excerpt: "Kupovina stana je jedna od najvećih finansijskih odluka u životu. I upravo zato je ovo jedan od slučajeva gde pravni savet nije luksuz - već nužnost. Evo šta proveriti pre nego što date ijedan dinar.",
+      content: [
+        "Kupovina stana je jedna od najvećih finansijskih odluka u životu. I upravo zato je ovo jedan od slučajeva gde pravni savet nije luksuz - već nužnost.",
+        "Najčešći scenario koji vidim: kupac plati depozit, prodavac se predomisli, novac 'nestane'. Ili, stan ima teret koji prodavac nije pomenuo - hipoteku, poreske dugove, sporove o vlasništvu.",
+        "Pre nego što date ijedan dinar, proverite list nepokretnosti u Republičkom geodetskom zavodu. Tražite se online ili na šalteru. List nepokretnosti pokazuje: ko je vlasnik, da li postoji hipoteka, da li ima zabeležbe spora ili zabrane otuđenja.",
+        "Predugovor je ključni dokument. Mora sadržati: tačan iznos depozita, rok za zaključenje kupoprodajnog ugovora, i šta se dešava ako neka strana odustane. Standardna zaštita: ako prodavac odustane, vraća dupli iznos depozita; ako kupac odustane, gubi depozit.",
+        "Nikada ne potpisujte predugovor bez advokata koji je pročitao svaki red. Jedna loše formulisana klauzula može vas koštati celokupnog depozita - ili vas vezati za stan koji ima pravne probleme.",
+        "Ako ste već u problemu - prodavac odbija da vrati depozit ili 'nema novca' - postoje pravni mehanizmi. Rok za pokretanje postupka je relativno kratak. Ne čekajte.",
+      ],
+    },
+    en: {
+      slug: "kupovina-stana-depozit-zastita",
+      title: "Buying an apartment – how to protect your deposit and avoid being cheated",
+      date: "10 March 2026",
+      excerpt: "Buying a property is one of the biggest financial decisions of your life. And that is exactly why legal advice here is not a luxury - it is a necessity. Here is what to check before you hand over a single euro.",
+      content: [
+        "Buying a property is one of the biggest financial decisions of your life. And that is exactly why legal advice here is not a luxury - it is a necessity.",
+        "The most common scenario I see: a buyer pays a deposit, the seller changes their mind, and the money 'disappears'. Or the property has a burden the seller never mentioned - a mortgage, tax debts, ownership disputes.",
+        "Before you hand over a single euro, check the property register at the Republic Geodetic Authority. You can do this online or at a counter. The register shows: who the owner is, whether there is a mortgage, and whether there are any registered disputes or transfer restrictions.",
+        "The pre-contract is the key document. It must contain: the exact deposit amount, the deadline for signing the purchase agreement, and what happens if either party withdraws. Standard protection: if the seller withdraws, they return double the deposit; if the buyer withdraws, they lose the deposit.",
+        "Never sign a pre-contract without a lawyer who has read every line. One poorly worded clause can cost you your entire deposit - or tie you to a property with legal problems.",
+        "If you are already in trouble - the seller refuses to return the deposit or 'has no money' - there are legal mechanisms available. The deadline for initiating proceedings is relatively short. Do not wait.",
+      ],
+    },
+  },
+
+  "iseljenje-stanara-prava": {
+    sr: {
+      slug: "iseljenje-stanara-prava",
+      title: "Gazda hoće da me iseli – koja su moja prava kao stanara?",
+      date: "28. februar 2026.",
+      excerpt: "Vlasnik stana je promenio bravu, vratio ključeve ili prosto rekao da se iseli do kraja meseca. Bez ugovora, bez sudske odluke. Je li to legalno? Odgovor je skoro uvek: ne.",
+      content: [
+        "Vlasnik stana vam je promenio bravu, vratio ključeve ili jednostavno rekao da se iseli do kraja meseca - bez ugovora, bez sudske odluke, bez ikakvog pravnog osnova. Je li to legalno? Odgovor je skoro uvek: ne.",
+        "Prema srpskom pravu, stanodavac ne može da iseli stanara samovoljno, bez obzira da li postoji pisani ugovor ili ne. Čak i usmeni sporazum o najmu stvara pravni odnos koji se mora poštovati.",
+        "Jedini zakonit način da vlasnik dobije nazad posed stana jeste putem suda - tužbom za iseljenje. Taj postupak može trajati mesecima. Do pravosnažne sudske odluke, stanar ima pravo da ostane u stanu.",
+        "Ako vam je stanodavac promenio bravu ili onemogućio pristup stanu - to je protivpravno oduzimanje poseda. Imate pravo da odmah pokrenete postupak za vraćanje poseda pred mesno nadležnim sudom. Rokovi su kratki, ali zaštita je stvarna.",
+        "Posebno je važno dokumentovati sve: sačuvajte poruke, mejlove, a ako postoji ugovor - čuvajte ga na sigurnom mestu. Ako nemate pisani ugovor, dokumentujte plaćanje kirije (izvodi sa računa, uplatnice).",
+        "Ako imate ugovor i stanodavac želi da ga raskine pre roka - mora imati zakonit razlog (neplaćanje kirije, oštećenje stana, itd.) i mora vam dati otkazni rok. Jednostrano raskidanje bez osnova vam daje pravo na naknadu štete.",
+      ],
+    },
+    en: {
+      slug: "iseljenje-stanara-prava",
+      title: "My landlord wants to evict me – what are my rights as a tenant?",
+      date: "28 February 2026",
+      excerpt: "The landlord changed the locks, handed back the keys or simply told you to leave by end of month. No contract, no court order. Is that legal? The answer is almost always: no.",
+      content: [
+        "Your landlord has changed the locks, taken back the keys or simply told you to leave by end of month - no contract, no court order, no legal basis whatsoever. Is that legal? The answer is almost always: no.",
+        "Under Serbian law, a landlord cannot evict a tenant unilaterally, regardless of whether a written contract exists or not. Even a verbal rental agreement creates a legal relationship that must be respected.",
+        "The only lawful way for an owner to reclaim possession of a property is through court - by filing an eviction claim. That process can take months. Until a final court decision, the tenant has the right to remain in the property.",
+        "If your landlord has changed the locks or blocked your access to the property - that is unlawful dispossession. You have the right to immediately initiate possession recovery proceedings before the competent court. Deadlines are short, but the protection is real.",
+        "It is important to document everything: save messages and emails, and if a contract exists - keep it somewhere safe. If you have no written contract, document rent payments (bank statements, payment receipts).",
+        "If you have a contract and the landlord wants to terminate it before the agreed term - they must have a lawful reason (non-payment of rent, property damage, etc.) and must give you a notice period. Unilateral termination without grounds gives you the right to claim damages.",
+      ],
+    },
+  },
+
+  "starateljstvo-dete-razvod": {
+    sr: {
+      slug: "starateljstvo-dete-razvod",
+      title: "Ko dobija dete posle razvoda – kako funkcioniše starateljstvo u Srbiji",
+      date: "5. januar 2026.",
+      excerpt: "Ovo je pitanje koje čujem najčešće pri razvodu. I uvek odgovaram isto: sud ne 'daje' dete ni ocu ni majci - sud određuje šta je u najboljem interesu deteta. Evo kako to zapravo funkcioniše.",
+      content: [
+        "Ovo je pitanje koje čujem najčešće pri razvodu. I uvek odgovaram isto: sud ne 'daje' dete ni ocu ni majci. Sud određuje šta je u najboljem interesu deteta - a to je jedini kriterijum koji pravno postoji.",
+        "Postoje dve vrste starateljstva: zajedničko i samostalno. Zajedničko starateljstvo znači da oba roditelja zajedno donose važne odluke o detetu - o školovanju, lečenju, putovanjima. Dete može živeti pretežno s jednim roditeljem, ali oba ostaju ravnopravno uključena.",
+        "Samostalno starateljstvo se dodeljuje jednom roditelju kada zajednički sporazum nije moguć ili kada jedan roditelj nije u stanju da se bavi detetom. Drugi roditelj i dalje ima pravo na viđanje.",
+        "Sud uzima u obzir mnoštvo faktora: uzrast deteta, njegovu volju (naročito ako je starije od 10 godina), koji roditelj je bio primarni negovatelj, uslove stanovanja, zdravlje, prisustvo nasilja u porodici.",
+        "Najvažnija stvar koju mogu da vam kažem: pokušajte sporazumno. Sudski postupci o starateljstvu su emotivno iscrpljujući za celu porodicu, a posebno za decu. Ako postoji makar minimum dobre volje, sporazumno rešenje štiti sve strane.",
+        "Ako sporazum nije moguć - ja sam tu da zastupam vaše i interese vašeg deteta pred sudom. Ali uvek ću pre toga pokušati pregovarački put.",
+      ],
+    },
+    en: {
+      slug: "starateljstvo-dete-razvod",
+      title: "Who gets the child after divorce – how custody works in Serbia",
+      date: "5 January 2026",
+      excerpt: "This is the question I hear most often in divorce cases. And I always give the same answer: the court does not 'give' the child to either parent - it determines what is in the child's best interest. Here is how it actually works.",
+      content: [
+        "This is the question I hear most often in divorce cases. And I always give the same answer: the court does not 'give' the child to either the mother or the father. The court determines what is in the child's best interest - and that is the only legal criterion that exists.",
+        "There are two types of custody: joint and sole. Joint custody means both parents jointly make important decisions about the child - education, medical treatment, travel. The child may primarily live with one parent, but both remain equally involved.",
+        "Sole custody is awarded to one parent when a joint arrangement is not possible or when one parent is unable to care for the child. The other parent still retains the right to contact and visitation.",
+        "The court considers many factors: the child's age, their wishes (especially if they are over 10), which parent was the primary caregiver, living conditions, health, and the presence of any family violence.",
+        "The most important thing I can tell you: try to reach an agreement. Contested custody proceedings are emotionally exhausting for the entire family, and especially for the children. If there is any minimum of goodwill, an agreed solution protects everyone.",
+        "If an agreement is not possible - I am here to represent your interests and your child's interests before the court. But I will always attempt negotiation first.",
+      ],
+    },
+  },
 };

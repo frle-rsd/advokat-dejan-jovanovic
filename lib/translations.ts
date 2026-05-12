@@ -10,7 +10,7 @@ export const translations = {
       contact: "Kontakt",
     },
     hero: {
-      badge: "Advokat · Beograd",
+      badge: "Advokat Dejan Jovanović",
       heading1: "Pravni problem?",
       heading2: "Tu sam za vas.",
       sub: "Pomažem ljudima da zaštite svoja prava - bez komplikacija, bez nepotrebnog stresa, po razumnoj ceni.",
@@ -88,7 +88,7 @@ export const translations = {
       navLabel: "Navigacija",
       contactLabel: "Kontakt",
       hours: "Pon–Pet: 09:00–17:00",
-      copyright: "© 2025 Advokat Dejan Jovanović. Sva prava zadržana.",
+      copyright: "© 2026 Advokat Dejan Jovanović. Sva prava zadržana.",
     },
     about: {
       label: "Ko sam ja",
@@ -216,6 +216,24 @@ export const translations = {
           date: "18. januar 2025.",
           excerpt: "Klijent optužen za telesnu povredu posle incidenta u kom je, kako je tvrdio, bio napadnut prvi. Argument samoodbrane, pogrešno primenjen, mogao je da ga košta slobode. Evo kako smo izgradili odbranu.",
         },
+        {
+          slug: "kupovina-stana-depozit-zastita",
+          title: "Kupujem stan – kako da zaštitim depozit i ne budem prevaren",
+          date: "10. mart 2026.",
+          excerpt: "Kupovina stana je jedna od najvećih finansijskih odluka u životu. I upravo zato je ovo jedan od slučajeva gde pravni savet nije luksuz - već nužnost. Evo šta proveriti pre nego što date ijedan dinar.",
+        },
+        {
+          slug: "iseljenje-stanara-prava",
+          title: "Gazda hoće da me iseli – koja su moja prava kao stanara?",
+          date: "28. februar 2026.",
+          excerpt: "Vlasnik stana je promenio bravu, vratio ključeve ili prosto rekao da se iseli do kraja meseca. Bez ugovora, bez sudske odluke. Je li to legalno? Odgovor je skoro uvek: ne.",
+        },
+        {
+          slug: "starateljstvo-dete-razvod",
+          title: "Ko dobija dete posle razvoda – kako funkcioniše starateljstvo u Srbiji",
+          date: "5. januar 2026.",
+          excerpt: "Ovo je pitanje koje čujem najčešće pri razvodu. I uvek odgovaram isto: sud ne 'daje' dete ni ocu ni majci - sud određuje šta je u najboljem interesu deteta. Evo kako to zapravo funkcioniše.",
+        },
       ],
     },
     notFound: {
@@ -237,7 +255,7 @@ export const translations = {
       contact: "Contact",
     },
     hero: {
-      badge: "Lawyer · Belgrade",
+      badge: "Advokat Dejan Jovanović",
       heading1: "Legal trouble?",
       heading2: "I'm here for you.",
       sub: "I help people protect their rights - without unnecessary complications, without stress, at a fair price.",
@@ -315,7 +333,7 @@ export const translations = {
       navLabel: "Navigation",
       contactLabel: "Contact",
       hours: "Mon–Fri: 09:00–17:00",
-      copyright: "© 2025 Lawyer Dejan Jovanović. All rights reserved.",
+      copyright: "© 2026 Lawyer Dejan Jovanović. All rights reserved.",
     },
     about: {
       label: "Who I am",
@@ -442,6 +460,24 @@ export const translations = {
           title: "Bar fight – how we avoided a prison sentence",
           date: "18 January 2025",
           excerpt: "A client charged with bodily harm after an incident in which, as he claimed, he was attacked first. A self-defence argument, if misapplied, could have cost him his freedom. Here's how we built the defence.",
+        },
+        {
+          slug: "kupovina-stana-depozit-zastita",
+          title: "Buying an apartment – how to protect your deposit and avoid being cheated",
+          date: "10 March 2026",
+          excerpt: "Buying a property is one of the biggest financial decisions of your life. And that is exactly why legal advice here is not a luxury - it is a necessity. Here is what to check before you hand over a single euro.",
+        },
+        {
+          slug: "iseljenje-stanara-prava",
+          title: "My landlord wants to evict me – what are my rights as a tenant?",
+          date: "28 February 2026",
+          excerpt: "The landlord changed the locks, handed back the keys or simply told you to leave by end of month. No contract, no court order. Is that legal? The answer is almost always: no.",
+        },
+        {
+          slug: "starateljstvo-dete-razvod",
+          title: "Who gets the child after divorce – how custody works in Serbia",
+          date: "5 January 2026",
+          excerpt: "This is the question I hear most often in divorce cases. And I always give the same answer: the court does not 'give' the child to either parent - it determines what is in the child's best interest. Here is how it actually works.",
         },
       ],
     },

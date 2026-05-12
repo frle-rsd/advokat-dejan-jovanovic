@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   motion,
   useInView,
@@ -13,16 +14,7 @@ import {
 import { useEffect, useRef } from "react";
 import { useLanguage } from "@/components/LanguageContext";
 
-// Animated counter — counts from 0 to `to` when it scrolls into view
-function CountUp({
-  to,
-  suffix = "",
-  duration = 2.8,
-}: {
-  to: number;
-  suffix?: string;
-  duration?: number;
-}) {
+function CountUp({ to, suffix = "", duration = 2.8 }: { to: number; suffix?: string; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const count = useMotionValue(0);
@@ -30,10 +22,7 @@ function CountUp({
 
   useEffect(() => {
     if (!inView) return;
-    const controls = animate(count, to, {
-      duration,
-      ease: [0.16, 1, 0.3, 1],
-    });
+    const controls = animate(count, to, { duration, ease: [0.16, 1, 0.3, 1] });
     return controls.stop;
   }, [inView, count, to, duration]);
 
@@ -48,13 +37,20 @@ function CountUp({
 export default function HeroSection() {
   const { t, lang } = useLanguage();
 
-  // Mouse-tracking spotlight
   const sectionRef = useRef<HTMLElement>(null);
+
+  // Mouse position (0–100%)
   const rawX = useMotionValue(50);
   const rawY = useMotionValue(50);
   const springX = useSpring(rawX, { stiffness: 50, damping: 18 });
   const springY = useSpring(rawY, { stiffness: 50, damping: 18 });
+
+  // Spotlight follows cursor
   const spotlightBg = useMotionTemplate`radial-gradient(ellipse 55% 55% at ${springX}% ${springY}%, rgba(201,168,76,0.10) 0%, transparent 65%)`;
+
+  // Logo drifts opposite to cursor — subtle parallax
+  const logoX = useTransform(springX, [0, 100], [20, -20]);
+  const logoY = useTransform(springY, [0, 100], [12, -12]);
 
   function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
     const rect = sectionRef.current?.getBoundingClientRect();
@@ -64,9 +60,9 @@ export default function HeroSection() {
   }
 
   const stats = [
-    { to: 5, suffix: "+", label: lang === "sr" ? "godina iskustva" : "years experience", dur: 2.8 },
-    { to: 200, suffix: "+", label: lang === "sr" ? "rešenih predmeta" : "cases resolved", dur: 3.2 },
-    { to: 100, suffix: "%", label: lang === "sr" ? "posvećenost" : "commitment", dur: 2.5 },
+    { to: 5,   suffix: "+", label: lang === "sr" ? "godina iskustva"  : "years experience", dur: 2.8 },
+    { to: 200, suffix: "+", label: lang === "sr" ? "rešenih predmeta" : "cases resolved",   dur: 3.2 },
+    { to: 100, suffix: "%", label: lang === "sr" ? "posvećenost"      : "commitment",        dur: 2.5 },
   ];
 
   return (
@@ -75,7 +71,7 @@ export default function HeroSection() {
       onMouseMove={handleMouseMove}
       className="relative min-h-[90vh] bg-[#1a2744] flex items-center overflow-hidden"
     >
-      {/* Subtle grid pattern */}
+      {/* Grid pattern */}
       <div
         className="absolute inset-0 opacity-[0.04]"
         style={{
@@ -85,21 +81,29 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Static base glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 50% at 50% 35%, rgba(201,168,76,0.05) 0%, transparent 70%)",
-        }}
-      />
+      {/* Logo watermark — drifts opposite to mouse */}
+      <motion.div
+        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+        style={{ x: logoX, y: logoY }}
+      >
+        <Image
+          src="/logo.png"
+          alt=""
+          width={420}
+          height={420}
+          className="opacity-[0.08]"
+          aria-hidden
+          draggable={false}
+        />
+      </motion.div>
 
-      {/* Mouse-tracking spotlight — follows cursor with spring physics */}
+      {/* Mouse-tracking spotlight */}
       <motion.div
         className="absolute inset-0 pointer-events-none"
         style={{ background: spotlightBg }}
       />
 
+      {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 w-full py-24 text-center">
         {/* Badge */}
         <motion.div
@@ -115,7 +119,6 @@ export default function HeroSection() {
           <div className="h-px w-8 bg-[#c9a84c]" />
         </motion.div>
 
-        {/* Heading */}
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -136,7 +139,6 @@ export default function HeroSection() {
           {t.hero.heading2}
         </motion.h1>
 
-        {/* Subtext */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -146,7 +148,6 @@ export default function HeroSection() {
           {t.hero.sub}
         </motion.p>
 
-        {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -170,7 +171,7 @@ export default function HeroSection() {
           </Link>
         </motion.div>
 
-        {/* Animated stats counters */}
+        {/* Counters */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -191,10 +192,10 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Bottom wave */}
+      {/* Bottom wave — white so it merges with the About section */}
       <div className="absolute bottom-0 left-0 right-0 overflow-hidden leading-none">
         <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-          <path d="M0 40 L0 20 Q360 0 720 20 Q1080 40 1440 20 L1440 40 Z" fill="#f8f6f0" />
+          <path d="M0 40 L0 20 Q360 0 720 20 Q1080 40 1440 20 L1440 40 Z" fill="white" />
         </svg>
       </div>
     </section>
