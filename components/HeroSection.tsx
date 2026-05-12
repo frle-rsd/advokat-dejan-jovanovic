@@ -1,16 +1,49 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { useLanguage } from "@/components/LanguageContext";
+
+// Animated counter that counts from 0 to `to` when it enters the viewport
+function CountUp({
+  to,
+  suffix = "",
+  duration = 1.8,
+}: {
+  to: number;
+  suffix?: string;
+  duration?: number;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (v) => Math.round(v));
+
+  useEffect(() => {
+    if (!inView) return;
+    const controls = animate(count, to, {
+      duration,
+      ease: [0.16, 1, 0.3, 1], // expo out
+    });
+    return controls.stop;
+  }, [inView, count, to, duration]);
+
+  return (
+    <span ref={ref} className="tabular-nums">
+      <motion.span>{rounded}</motion.span>
+      {suffix}
+    </span>
+  );
+}
 
 export default function HeroSection() {
   const { t, lang } = useLanguage();
 
   const stats = [
-    { num: "5+", label: lang === "sr" ? "godina iskustva" : "years experience" },
-    { num: "200+", label: lang === "sr" ? "rešenih predmeta" : "cases resolved" },
-    { num: "100%", label: lang === "sr" ? "posvećenost" : "commitment" },
+    { to: 5, suffix: "+", label: lang === "sr" ? "godina iskustva" : "years experience" },
+    { to: 200, suffix: "+", label: lang === "sr" ? "rešenih predmeta" : "cases resolved" },
+    { to: 100, suffix: "%", label: lang === "sr" ? "posvećenost" : "commitment" },
   ];
 
   return (
@@ -104,19 +137,21 @@ export default function HeroSection() {
           </Link>
         </motion.div>
 
-        {/* Stats */}
+        {/* Animated stats counters */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9, duration: 0.6 }}
           className="flex items-center justify-center gap-0 mt-16 pt-10 border-t border-white/10"
         >
-          {stats.map(({ num, label }, i) => (
+          {stats.map(({ to, suffix, label }, i) => (
             <div
               key={label}
               className={`text-center px-10 ${i !== 0 ? "border-l border-white/10" : ""}`}
             >
-              <div className="text-[#c9a84c] font-heading font-bold text-3xl">{num}</div>
+              <div className="text-[#c9a84c] font-heading font-bold text-3xl">
+                <CountUp to={to} suffix={suffix} duration={1.6 + i * 0.2} />
+              </div>
               <div className="text-gray-400 text-xs mt-1 uppercase tracking-wider">{label}</div>
             </div>
           ))}

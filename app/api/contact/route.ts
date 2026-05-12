@@ -1,5 +1,53 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/lib/supabaseClient";
+import nodemailer from "nodemailer";
+
+async function sendNotificationEmail(data: {
+  name: string;
+  email: string;
+  phone?: string;
+  subject?: string;
+  message: string;
+}) {
+  const user = process.env.GMAIL_USER;
+  const pass = process.env.GMAIL_APP_PASSWORD;
+
+  // Skip email if credentials not configured
+  if (!user || !pass) return;
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: { user, pass },
+  });
+
+  await transporter.sendMail({
+    from: `"Sajt – Kontakt forma" <${user}>`,
+    to: "dejanjovanovic.adv@gmail.com",
+    replyTo: data.email,
+    subject: data.subject
+      ? `Upit: ${data.subject}`
+      : `Nova poruka od ${data.name}`,
+    html: `
+      <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
+        <div style="background:#1a2744;padding:24px 32px">
+          <h2 style="color:#c9a84c;margin:0;font-size:18px;letter-spacing:1px">NOVA PORUKA SA SAJTA</h2>
+        </div>
+        <div style="padding:32px;border:1px solid #e5e7eb;border-top:none">
+          <table style="width:100%;border-collapse:collapse">
+            <tr><td style="padding:8px 0;color:#6b7280;font-size:13px;width:110px">Ime</td><td style="padding:8px 0;font-weight:600;color:#1a2744">${data.name}</td></tr>
+            <tr><td style="padding:8px 0;color:#6b7280;font-size:13px">Email</td><td style="padding:8px 0"><a href="mailto:${data.email}" style="color:#c9a84c">${data.email}</a></td></tr>
+            ${data.phone ? `<tr><td style="padding:8px 0;color:#6b7280;font-size:13px">Telefon</td><td style="padding:8px 0;color:#1a2744">${data.phone}</td></tr>` : ""}
+            ${data.subject ? `<tr><td style="padding:8px 0;color:#6b7280;font-size:13px">Predmet</td><td style="padding:8px 0;color:#1a2744">${data.subject}</td></tr>` : ""}
+          </table>
+          <div style="margin-top:20px;padding:16px;background:#f8f6f0;border-left:3px solid #c9a84c">
+            <p style="margin:0;color:#374151;line-height:1.6;white-space:pre-wrap">${data.message}</p>
+          </div>
+          <p style="margin-top:24px;font-size:12px;color:#9ca3af">Poruka primljena putem kontakt forme na advokat-dejan-jovanovic.vercel.app</p>
+        </div>
+      </div>
+    `,
+  });
+}
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
@@ -12,6 +60,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  // Save to Supabase
   const { error } = await supabase.from("contact_submissions").insert([
     {
       name,
@@ -25,6 +74,11 @@ export async function POST(request: NextRequest) {
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
+
+  // Send email notification (non-blocking – won't fail the request if email fails)
+  sendNotificationEmail({ name, email, phone, subject, message }).catch(
+    (err) => console.error("Email send error:", err)
+  );
 
   return NextResponse.json({ success: true }, { status: 200 });
 }

@@ -168,7 +168,7 @@ export const translations = {
       formTitle: "Pošaljite upit",
       address: "Lipetska 17, 11000 Beograd",
       phone: "+381 60 5000 362",
-      email: "jovanovic92.law@gmail.com",
+      email: "dejanjovanovic.adv@gmail.com",
       hoursLabel: "Radno vreme",
       hours: "Ponedeljak – Petak\n09:00 – 17:00",
       fields: {
@@ -395,7 +395,7 @@ export const translations = {
       formTitle: "Send an enquiry",
       address: "Lipetska 17, 11000 Belgrade",
       phone: "+381 60 5000 362",
-      email: "jovanovic92.law@gmail.com",
+      email: "dejanjovanovic.adv@gmail.com",
       hoursLabel: "Working hours",
       hours: "Monday – Friday\n09:00 – 17:00",
       fields: {
