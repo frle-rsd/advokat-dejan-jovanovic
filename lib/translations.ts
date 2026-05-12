@@ -13,7 +13,7 @@ export const translations = {
       badge: "Advokat · Beograd",
       heading1: "Pravni problem?",
       heading2: "Tu sam za vas.",
-      sub: "Pomažem ljudima da zaštite svoja prava — bez komplikacija, bez nepotrebnog stresa, po razumnoj ceni.",
+      sub: "Pomažem ljudima da zaštite svoja prava - bez komplikacija, bez nepotrebnog stresa, po razumnoj ceni.",
       cta1: "Zakažite konsultaciju",
       cta2: "Oblasti prava",
     },
@@ -21,8 +21,8 @@ export const translations = {
       label: "Ko sam ja",
       heading1: "Advokat Dejan",
       heading2: "Jovanović",
-      p1: "Nisam tu da vas zatrpam pravnim žargonom. Tu sam da rešim vaš problem — jasno, pošteno i efikasno. Sa 5 godina iskustva pred beogradskim sudovima, znam šta funkcioniše i kako da zaštitim vaše interese.",
-      p2: "Moja praksa je privatna — što znači da svaki klijent dobija punu pažnju, ne broj u redu čekanja.",
+      p1: "Nisam tu da vas zatrpam pravnim žargonom. Tu sam da rešim vaš problem - jasno, pošteno i efikasno. Sa 5 godina iskustva pred beogradskim sudovima, znam šta funkcioniše i kako da zaštitim vaše interese.",
+      p2: "Moja praksa je privatna - što znači da svaki klijent dobija punu pažnju, ne broj u redu čekanja.",
       cta: "Saznajte više o meni",
     },
     practiceAreas: {
@@ -32,7 +32,7 @@ export const translations = {
       items: [
         {
           title: "Krivično pravo",
-          desc: "Odbrana u krivičnim postupcima od prvog saslušanja do žalbenog suda. Vaša sloboda — moj prioritet.",
+          desc: "Odbrana u krivičnim postupcima od prvog saslušanja do žalbenog suda. Vaša sloboda - moj prioritet.",
         },
         {
           title: "Građansko pravo",
@@ -40,7 +40,7 @@ export const translations = {
         },
         {
           title: "Porodično pravo",
-          desc: "Razvod, starateljstvo, alimentacija. Štitim vaše interese i interese vaše dece — bez nepotrebnih sukoba.",
+          desc: "Razvod, starateljstvo, alimentacija. Štitim vaše interese i interese vaše dece - bez nepotrebnih sukoba.",
         },
         {
           title: "Radno pravo",
@@ -62,7 +62,7 @@ export const translations = {
       items: [
         {
           title: "Direktna komunikacija",
-          desc: "Uvek znaš šta se dešava sa tvojim predmetom. Dostupan sam na telefon i email — bez sekretarica i čekanja.",
+          desc: "Uvek znaš šta se dešava sa tvojim predmetom. Dostupan sam na telefon i email - bez sekretarica i čekanja.",
         },
         {
           title: "Razumne cene",
@@ -74,13 +74,13 @@ export const translations = {
         },
         {
           title: "Lični pristup",
-          desc: "Privatna praksa znači da svaki klijent dobija punu pažnju. Nisi broj — si čovek sa problemom koji treba rešiti.",
+          desc: "Privatna praksa znači da svaki klijent dobija punu pažnju - bez čekanja, bez posrednika, direktno sa advokatom.",
         },
       ],
     },
     contactTeaser: {
       heading: "Imate pravni problem?",
-      sub: "Pozovite ili pišite — prva konsultacija je besplatna.",
+      sub: "Pozovite ili pišite - prva konsultacija je besplatna.",
       cta: "Kontaktirajte me",
     },
     footer: {
@@ -95,7 +95,7 @@ export const translations = {
       pageTitle: "O meni",
       bio: [
         "Advokat Dejan Jovanović je privatni advokat sa sedištem u Beogradu, sa pet godina aktivne prakse pred srpskim sudovima. Kroz stotine predmeta iz oblasti krivičnog, građanskog, porodičnog i radnog prava, izgradio je reputaciju advokata koji je direktan, posvećen i dostupan.",
-        "Pravni fakultet Univerziteta u Beogradu završio je 2019. godine, a odmah po položenom pravosudnom ispitu upisao se u Imenik advokata Advokatske komore Beograda. Za razliku od velikih kancelarija gde klijenti postaju dosijei, Dejan vodi privatnu praksu gde svaki klijent ima direktan kontakt sa advokatom — bez posrednika.",
+        "Pravni fakultet Univerziteta u Beogradu završio je 2019. godine, a odmah po položenom pravosudnom ispitu upisao se u Imenik advokata Advokatske komore Beograda. Za razliku od velikih kancelarija gde klijenti postaju dosijei, Dejan vodi privatnu praksu gde svaki klijent ima direktan kontakt sa advokatom - bez posrednika.",
         "Veruje da pravo treba da bude dostupno svakome, ne samo onima koji mogu da priušte skupe kancelarije. Upravo zato drži razumne cene i jasnu komunikaciju kao temeljne vrednosti svoje prakse.",
         "Kada ne radi u sudnici, aktivno prati promene u zakonodavstvu i sudskoj praksi, kako bi uvek bio u toku sa najnovijim razvojem prava.",
       ],
@@ -129,7 +129,7 @@ export const translations = {
       items: [
         {
           title: "Krivično pravo",
-          desc: "Pružam sveobuhvatnu odbranu u svim fazama krivičnog postupka — od policijskog saslušanja do žalbenog suda. Vaša sloboda i dostojanstvo su moj prioritet.",
+          desc: "Pružam sveobuhvatnu odbranu u svim fazama krivičnog postupka - od policijskog saslušanja do žalbenog suda. Vaša sloboda i dostojanstvo su moj prioritet.",
           services: ["Odbrana u istražnom postupku", "Zastupanje pred sudom", "Žalbeni postupci", "Krivične prijave", "Uslovni otpust"],
         },
         {
@@ -154,7 +154,7 @@ export const translations = {
         },
         {
           title: "Nekretnine i imovinsko pravo",
-          desc: "Obezbeđujem pravnu sigurnost u svim transakcijama nekretninama — od kupoprodaje do uknjižbe.",
+          desc: "Obezbeđujem pravnu sigurnost u svim transakcijama nekretninama - od kupoprodaje do uknjižbe.",
           services: ["Kupoprodaja nekretnina", "Uknjižba i prenos prava", "Eksproprijacija", "Susedski sporovi", "Legalizacija"],
         },
       ],
@@ -202,13 +202,13 @@ export const translations = {
           slug: "nezakoniti-otkaz-povratak-na-posao",
           title: "Otpustili su me bez razloga – i vratio sam se na posao",
           date: "15. april 2025.",
-          excerpt: "Klijent me je kontaktirao dan nakon što je dobio rešenje o otkazu. Nije potpisao nikakvu saglasnost, nije počinio nikakav disciplinski prekršaj — firma je prosto htela da ga se reši. Evo kako smo to rešili.",
+          excerpt: "Klijent me je kontaktirao dan nakon što je dobio rešenje o otkazu. Nije potpisao nikakvu saglasnost, nije počinio nikakav disciplinski prekršaj - firma je prosto htela da ga se reši. Evo kako smo to rešili.",
         },
         {
           slug: "razvod-bez-sudjenja",
           title: "Razvod bez suđenja – kako smo zaštitili dete i sačuvali mir",
           date: "2. mart 2025.",
-          excerpt: "Razvod ne mora da bude rat. Kada su deca u pitanju, svaki dan napetosti ostavlja trag. Pomogao sam dvoje roditelja da se sporazumno razvedu, regulišu starateljstvo i podele imovinu — bez jednog ročišta.",
+          excerpt: "Razvod ne mora da bude rat. Kada su deca u pitanju, svaki dan napetosti ostavlja trag. Pomogao sam dvoje roditelja da se sporazumno razvedu, regulišu starateljstvo i podele imovinu - bez jednog ročišta.",
         },
         {
           slug: "tuča-krivična-odbrana",
@@ -240,7 +240,7 @@ export const translations = {
       badge: "Lawyer · Belgrade",
       heading1: "Legal trouble?",
       heading2: "I'm here for you.",
-      sub: "I help people protect their rights — without unnecessary complications, without stress, at a fair price.",
+      sub: "I help people protect their rights - without unnecessary complications, without stress, at a fair price.",
       cta1: "Book a consultation",
       cta2: "Practice areas",
     },
@@ -248,8 +248,8 @@ export const translations = {
       label: "Who I am",
       heading1: "Lawyer Dejan",
       heading2: "Jovanović",
-      p1: "I'm not here to overwhelm you with legal jargon. I'm here to solve your problem — clearly, honestly and efficiently. With 5 years of experience before Belgrade courts, I know what works and how to protect your interests.",
-      p2: "My practice is private — meaning every client gets full attention, not a number in a queue.",
+      p1: "I'm not here to overwhelm you with legal jargon. I'm here to solve your problem - clearly, honestly and efficiently. With 5 years of experience before Belgrade courts, I know what works and how to protect your interests.",
+      p2: "My practice is private - meaning every client gets full attention, not a number in a queue.",
       cta: "Learn more about me",
     },
     practiceAreas: {
@@ -259,7 +259,7 @@ export const translations = {
       items: [
         {
           title: "Criminal law",
-          desc: "Defence in criminal proceedings from first hearing to appeal. Your freedom — my priority.",
+          desc: "Defence in criminal proceedings from first hearing to appeal. Your freedom - my priority.",
         },
         {
           title: "Civil law",
@@ -267,7 +267,7 @@ export const translations = {
         },
         {
           title: "Family law",
-          desc: "Divorce, custody, alimony. I protect your interests and your children's — without unnecessary conflict.",
+          desc: "Divorce, custody, alimony. I protect your interests and your children's - without unnecessary conflict.",
         },
         {
           title: "Labour law",
@@ -289,7 +289,7 @@ export const translations = {
       items: [
         {
           title: "Direct communication",
-          desc: "You always know what's happening with your case. Reachable by phone and email — no receptionists, no waiting.",
+          desc: "You always know what's happening with your case. Reachable by phone and email - no receptionists, no waiting.",
         },
         {
           title: "Fair pricing",
@@ -301,13 +301,13 @@ export const translations = {
         },
         {
           title: "Personal approach",
-          desc: "Private practice means every client gets full attention. You're not a number — you're a person with a problem that needs solving.",
+          desc: "Private practice means full attention for every client - no waiting, no intermediaries, direct access to your lawyer.",
         },
       ],
     },
     contactTeaser: {
       heading: "Got a legal problem?",
-      sub: "Call or write — first consultation is free.",
+      sub: "Call or write - first consultation is free.",
       cta: "Contact me",
     },
     footer: {
@@ -322,7 +322,7 @@ export const translations = {
       pageTitle: "About me",
       bio: [
         "Dejan Jovanović is a private lawyer based in Belgrade, with five years of active practice before Serbian courts. Through hundreds of cases in criminal, civil, family and labour law, he has built a reputation as a lawyer who is direct, dedicated and accessible.",
-        "He graduated from the Faculty of Law at the University of Belgrade in 2019 and joined the Belgrade Bar Association immediately after passing the bar exam. Unlike large firms where clients become files, Dejan runs a private practice where every client has direct contact with their lawyer — no intermediaries.",
+        "He graduated from the Faculty of Law at the University of Belgrade in 2019 and joined the Belgrade Bar Association immediately after passing the bar exam. Unlike large firms where clients become files, Dejan runs a private practice where every client has direct contact with their lawyer - no intermediaries.",
         "He believes that legal help should be accessible to everyone, not just those who can afford expensive firms. That is why transparent pricing and clear communication are the core values of his practice.",
         "When not in court, he actively follows changes in legislation and case law to always stay current with the latest legal developments.",
       ],
@@ -356,7 +356,7 @@ export const translations = {
       items: [
         {
           title: "Criminal law",
-          desc: "Comprehensive defence at all stages of criminal proceedings — from police questioning to appeals court. Your freedom and dignity are my priority.",
+          desc: "Comprehensive defence at all stages of criminal proceedings - from police questioning to appeals court. Your freedom and dignity are my priority.",
           services: ["Defence in investigation", "Court representation", "Appeals", "Criminal complaints", "Parole"],
         },
         {
@@ -381,7 +381,7 @@ export const translations = {
         },
         {
           title: "Real estate & property",
-          desc: "Ensuring legal certainty in all property transactions — from sale to registration.",
+          desc: "Ensuring legal certainty in all property transactions - from sale to registration.",
           services: ["Property sale", "Registration", "Expropriation", "Neighbour disputes", "Legalisation"],
         },
       ],
@@ -429,13 +429,13 @@ export const translations = {
           slug: "nezakoniti-otkaz-povratak-na-posao",
           title: "They fired me without reason – and I got my job back",
           date: "15 April 2025",
-          excerpt: "A client reached out the day after receiving his termination notice. He hadn't signed any agreement, hadn't committed any disciplinary offence — the company simply wanted to get rid of him. Here's how we fixed it.",
+          excerpt: "A client reached out the day after receiving his termination notice. He hadn't signed any agreement, hadn't committed any disciplinary offence - the company simply wanted to get rid of him. Here's how we fixed it.",
         },
         {
           slug: "razvod-bez-sudjenja",
           title: "Divorce without a trial – protecting the child and keeping the peace",
           date: "2 March 2025",
-          excerpt: "Divorce doesn't have to be a war. When children are involved, every day of tension leaves a mark. I helped two parents reach an amicable divorce, settle custody and divide property — without a single hearing.",
+          excerpt: "Divorce doesn't have to be a war. When children are involved, every day of tension leaves a mark. I helped two parents reach an amicable divorce, settle custody and divide property - without a single hearing.",
         },
         {
           slug: "tuča-krivična-odbrana",
