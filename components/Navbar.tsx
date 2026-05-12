@@ -62,8 +62,8 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-6">
 
-        {/* Logo + full name */}
-        <Link href="/" className="flex items-center gap-3 shrink-0 group">
+        {/* Logo only */}
+        <Link href="/" className="flex items-center shrink-0 group">
           <div
             className="w-10 h-10 rounded-full overflow-hidden ring-1 ring-[#c9a84c]/40 group-hover:ring-[#c9a84c] transition-all duration-300 shrink-0"
             style={{ backgroundColor: "#3c3d3f" }}
@@ -75,14 +75,6 @@ export default function Navbar() {
               height={40}
               className="object-cover w-full h-full"
             />
-          </div>
-          <div className="leading-none">
-            <span className="text-[#c9a84c] font-heading font-semibold text-xs uppercase tracking-widest block">
-              Advokat
-            </span>
-            <span className="text-white font-heading font-bold text-base tracking-wide block">
-              Dejan Jovanović
-            </span>
           </div>
         </Link>
 
