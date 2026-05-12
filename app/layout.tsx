@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
+import { LanguageProvider } from "@/components/LanguageContext";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -20,7 +21,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Advokat Dejan Jovanović – Pravna Kancelarija Beograd",
   description:
-    "Profesionalna pravna pomoć u Beogradu. Krivično, građansko, porodično, radno i privredno pravo. Kontaktirajte nas za konsultacije.",
+    "Privatna advokatska praksa u Beogradu. Krivično, građansko, porodično i radno pravo. Direktna komunikacija, razumne cene.",
 };
 
 export default function RootLayout({
@@ -31,9 +32,11 @@ export default function RootLayout({
   return (
     <html lang="sr" className={`${playfair.variable} ${inter.variable}`}>
       <body className="min-h-screen flex flex-col antialiased">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <LanguageProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </LanguageProvider>
         <Analytics />
       </body>
     </html>
