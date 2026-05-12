@@ -20,14 +20,15 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Advokat Dejan Jovanović – Pravna Kancelarija Beograd",
+  title: "Advokat Dejan Jovanović",
   description:
     "Privatna advokatska praksa u Beogradu. Krivično, građansko, porodično i radno pravo. Direktna komunikacija, razumne cene.",
   icons: {
     icon: [
+      { url: "/favicon.ico" },
       { url: "/logo.png", type: "image/png" },
     ],
-    shortcut: "/logo.png",
+    shortcut: "/favicon.ico",
     apple: "/logo.png",
   },
 };
