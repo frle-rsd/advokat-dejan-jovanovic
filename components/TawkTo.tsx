@@ -2,7 +2,11 @@
 
 import Script from "next/script";
 
-export default function TawkTo() {
+interface TawkToProps {
+  autoOpen?: boolean;
+}
+
+export default function TawkTo({ autoOpen = false }: TawkToProps) {
   return (
     <Script
       id="tawkto"
@@ -10,6 +14,7 @@ export default function TawkTo() {
       dangerouslySetInnerHTML={{
         __html: `
           var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+          ${autoOpen ? "Tawk_API.onLoad = function(){ Tawk_API.maximize(); };" : ""}
           (function(){
             var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
             s1.async=true;
