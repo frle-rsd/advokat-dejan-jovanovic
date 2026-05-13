@@ -139,7 +139,6 @@ export default function HeroSection() {
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      style={{ cursor: inSection ? "none" : "auto" }}
       className="relative min-h-[90vh] bg-[#1a2744] flex items-center overflow-hidden"
     >
       {/* Animated moving grid */}
@@ -165,9 +164,11 @@ export default function HeroSection() {
         <Image src="/logo.png" alt="" width={420} height={420} className="opacity-[0.07]" aria-hidden draggable={false} />
       </motion.div>
 
-      {/* Glow orb — drifts lazily after cursor */}
+      {/* Glow orb — invisible until mouse enters, then fades in */}
       <motion.div
         className="absolute pointer-events-none rounded-full"
+        animate={{ opacity: inSection ? 1 : 0 }}
+        transition={{ duration: 0.25 }}
         style={{
           x: glowX,
           y: glowY,
@@ -179,9 +180,11 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Cursor ring — springs behind cursor */}
+      {/* Cursor ring — springs behind cursor, fades in on entry */}
       <motion.div
-        className="absolute pointer-events-none z-30 rounded-full"
+        className="absolute pointer-events-none z-20 rounded-full"
+        animate={{ opacity: inSection ? 1 : 0 }}
+        transition={{ duration: 0.2 }}
         style={{
           x: ringX,
           y: ringY,
@@ -190,13 +193,15 @@ export default function HeroSection() {
           width: 36,
           height: 36,
           border: "1px solid rgba(201,168,76,0.55)",
-          boxShadow: "0 0 16px 4px rgba(201,168,76,0.15), inset 0 0 8px rgba(201,168,76,0.05)",
+          boxShadow: "0 0 16px 4px rgba(201,168,76,0.15)",
         }}
       />
 
-      {/* Cursor dot — snaps instantly */}
+      {/* Cursor dot — snaps instantly, fades in on entry */}
       <motion.div
-        className="absolute pointer-events-none z-30 rounded-full bg-[#c9a84c]"
+        className="absolute pointer-events-none z-20 rounded-full bg-[#c9a84c]"
+        animate={{ opacity: inSection ? 1 : 0 }}
+        transition={{ duration: 0.15 }}
         style={{
           x: cursorX,
           y: cursorY,
