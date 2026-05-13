@@ -85,10 +85,6 @@ export default function HeroSection() {
   const cursorX = useMotionValue(-300);
   const cursorY = useMotionValue(-300);
 
-  // Glow drifts lazily behind the cursor for a soft ambient effect
-  const glowX = useSpring(cursorX, { stiffness: 55, damping: 18 });
-  const glowY = useSpring(cursorY, { stiffness: 55, damping: 18 });
-
   function handleMouseEnter(e: React.MouseEvent<HTMLElement>) {
     const rect = sectionRef.current?.getBoundingClientRect();
     if (!rect) return;
@@ -96,8 +92,6 @@ export default function HeroSection() {
     const py = e.clientY - rect.top;
     cursorX.set(px);
     cursorY.set(py);
-    glowX.set(px);
-    glowY.set(py);
     setInSection(true);
   }
 
@@ -155,36 +149,19 @@ export default function HeroSection() {
         <Image src="/logo.png" alt="" width={420} height={420} className="opacity-[0.07]" aria-hidden draggable={false} />
       </motion.div>
 
-      {/* Glow orb — invisible until mouse enters, then fades in */}
+      {/* Glow orb — follows cursor directly, fades in on entry */}
       <motion.div
         className="absolute pointer-events-none rounded-full"
         animate={{ opacity: inSection ? 1 : 0 }}
         transition={{ duration: 0.25 }}
         style={{
-          x: glowX,
-          y: glowY,
-          translateX: "-50%",
-          translateY: "-50%",
-          width: 440,
-          height: 440,
-          background: "radial-gradient(circle, rgba(201,168,76,0.11) 0%, rgba(201,168,76,0.04) 45%, transparent 70%)",
-        }}
-      />
-
-      {/* Cursor ring — snaps directly to cursor, fades in on entry */}
-      <motion.div
-        className="absolute pointer-events-none z-20 rounded-full"
-        animate={{ opacity: inSection ? 1 : 0 }}
-        transition={{ duration: 0.2 }}
-        style={{
           x: cursorX,
           y: cursorY,
           translateX: "-50%",
           translateY: "-50%",
-          width: 36,
-          height: 36,
-          border: "1px solid rgba(201,168,76,0.55)",
-          boxShadow: "0 0 16px 4px rgba(201,168,76,0.15)",
+          width: 440,
+          height: 440,
+          background: "radial-gradient(circle, rgba(201,168,76,0.13) 0%, rgba(201,168,76,0.05) 40%, transparent 65%)",
         }}
       />
 
