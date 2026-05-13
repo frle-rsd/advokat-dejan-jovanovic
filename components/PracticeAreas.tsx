@@ -1,9 +1,57 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { useLanguage } from "@/components/LanguageContext";
 
+// ─── 3-D Tilt + glare card wrapper ──────────────────────────────────────────
+function TiltCard({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const rawX = useMotionValue(0); // -0.5 … 0.5
+  const rawY = useMotionValue(0);
+
+  const cfg = { stiffness: 300, damping: 28 };
+  const rotateX = useSpring(useTransform(rawY, [-0.5, 0.5], [9, -9]), cfg);
+  const rotateY = useSpring(useTransform(rawX, [-0.5, 0.5], [-9, 9]), cfg);
+
+  // Glare position follows cursor
+  const glareX = useTransform(rawX, [-0.5, 0.5], ["0%", "100%"]);
+  const glareY = useTransform(rawY, [-0.5, 0.5], ["0%", "100%"]);
+
+  function onMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = ref.current!.getBoundingClientRect();
+    rawX.set((e.clientX - rect.left) / rect.width - 0.5);
+    rawY.set((e.clientY - rect.top) / rect.height - 0.5);
+  }
+  function onLeave() {
+    rawX.set(0);
+    rawY.set(0);
+  }
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      className="relative group"
+    >
+      {children}
+
+      {/* Glare overlay */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(circle at ${glareX} ${glareY}, rgba(201,168,76,0.12) 0%, transparent 65%)`,
+        }}
+      />
+    </motion.div>
+  );
+}
+
+// ─── Icons ───────────────────────────────────────────────────────────────────
 const icons = [
   <svg key="k" className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>,
   <svg key="g" className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" /></svg>,
@@ -15,34 +63,62 @@ const icons = [
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.09 } },
 } as const;
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 32 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 } as const;
 
+// ─── Section heading with gold sweep reveal ──────────────────────────────────
+function SweepHeading({
+  label,
+  heading,
+}: {
+  label: string;
+  heading: string;
+}) {
+  return (
+    <div className="text-center mb-14">
+      <p className="text-[#c9a84c] text-xs uppercase tracking-[0.3em] font-semibold mb-3">
+        {label}
+      </p>
+      <div className="relative inline-block overflow-hidden">
+        <h2 className="font-heading text-3xl md:text-4xl font-bold text-[#1a2744]">
+          {heading}
+        </h2>
+        {/* Gold bar sweeps left→right then exits right */}
+        <motion.div
+          initial={{ x: "-101%" }}
+          whileInView={{ x: ["−101%", "0%", "0%", "101%"] }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, times: [0, 0.38, 0.62, 1], ease: "easeInOut" }}
+          className="absolute inset-0 bg-[#c9a84c]"
+        />
+      </div>
+      <div className="w-12 h-0.5 bg-[#c9a84c] mx-auto mt-4" />
+    </div>
+  );
+}
+
+// ─── Main ────────────────────────────────────────────────────────────────────
 export default function PracticeAreas() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-24 bg-[#f8f6f0]">
+    <section className="py-24 bg-[#f8f6f0]" style={{ perspective: "1200px" }}>
       <div className="max-w-6xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-14"
         >
-          <p className="text-[#c9a84c] text-xs uppercase tracking-[0.3em] font-semibold mb-3">
-            {t.practiceAreas.label}
-          </p>
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-[#1a2744] mb-4">
-            {t.practiceAreas.heading}
-          </h2>
-          <div className="w-12 h-0.5 bg-[#c9a84c] mx-auto" />
+          <SweepHeading
+            label={t.practiceAreas.label}
+            heading={t.practiceAreas.heading}
+          />
         </motion.div>
 
         <motion.div
@@ -53,18 +129,18 @@ export default function PracticeAreas() {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {t.practiceAreas.items.map((area, i) => (
-            <motion.div
-              key={area.title}
-              variants={cardVariants}
-              className="bg-white p-7 border border-gray-100 hover:shadow-lg hover:border-[#c9a84c]/40 transition-all duration-300 group cursor-default"
-            >
-              <div className="w-14 h-14 bg-[#1a2744]/5 flex items-center justify-center text-[#c9a84c] mb-5 group-hover:bg-[#1a2744] transition-colors duration-300">
-                {icons[i]}
-              </div>
-              <h3 className="font-heading font-semibold text-lg text-[#1a2744] mb-3">
-                {area.title}
-              </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{area.desc}</p>
+            <motion.div key={area.title} variants={cardVariants}>
+              <TiltCard>
+                <div className="bg-white p-7 border border-gray-100 hover:shadow-xl hover:border-[#c9a84c]/40 transition-all duration-300 group cursor-default h-full">
+                  <div className="w-14 h-14 bg-[#1a2744]/5 flex items-center justify-center text-[#c9a84c] mb-5 group-hover:bg-[#1a2744] transition-colors duration-300">
+                    {icons[i]}
+                  </div>
+                  <h3 className="font-heading font-semibold text-lg text-[#1a2744] mb-3">
+                    {area.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{area.desc}</p>
+                </div>
+              </TiltCard>
             </motion.div>
           ))}
         </motion.div>
