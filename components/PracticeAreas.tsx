@@ -154,7 +154,7 @@ export default function PracticeAreas() {
         >
           <Link
             href="/oblasti-prava"
-            className="inline-block border border-[#1a2744] text-[#1a2744] font-semibold px-8 py-3 text-sm uppercase tracking-wider hover:bg-[#1a2744] hover:text-white transition-colors duration-200"
+            className="btn-shimmer inline-block border border-[#1a2744] text-[#1a2744] font-semibold px-8 py-3 text-sm uppercase tracking-wider hover:bg-[#1a2744] hover:text-white transition-colors duration-200"
           >
             {t.practiceAreas.viewAll}
           </Link>

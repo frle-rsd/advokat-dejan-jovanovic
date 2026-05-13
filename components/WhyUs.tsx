@@ -42,8 +42,12 @@ export default function WhyUs() {
               transition={{ duration: 0.5, delay: i * 0.12 }}
               className="group"
             >
-              <div className="w-16 h-16 bg-[#1a2744] text-[#c9a84c] flex items-center justify-center mb-5 group-hover:bg-[#c9a84c] group-hover:text-[#1a2744] transition-colors duration-300">
-                {icons[i]}
+              {/* Icon box — lifts up and flips color on hover */}
+              <div className="icon-lift w-16 h-16 bg-[#1a2744] text-[#c9a84c] flex items-center justify-center mb-5 group-hover:bg-[#c9a84c] group-hover:text-[#1a2744] transition-colors duration-300">
+                {/* Icon itself rotates slightly on hover */}
+                <div className="transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110">
+                  {icons[i]}
+                </div>
               </div>
               <h3 className="font-heading font-semibold text-lg text-[#1a2744] mb-3">
                 {item.title}
