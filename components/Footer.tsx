@@ -4,14 +4,33 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/components/LanguageContext";
 
-export default function Footer() {
-  const { t } = useLanguage();
+const blogPosts = [
+  {
+    href: "/blog/kupovina-stana-depozit-zastita",
+    sr: "Depozit pri kupovini stana",
+    en: "Protecting your property deposit",
+  },
+  {
+    href: "/blog/iseljenje-stanara-prava",
+    sr: "Iseljenje stanara: vaša prava",
+    en: "Evicting a tenant: your rights",
+  },
+  {
+    href: "/blog/starateljstvo-dete-razvod",
+    sr: "Starateljstvo posle razvoda",
+    en: "Child custody after divorce",
+  },
+];
 
-  const links = [
+export default function Footer() {
+  const { t, lang } = useLanguage();
+
+  const navLinks = [
     { href: "/", label: t.nav.home },
     { href: "/o-meni", label: t.nav.about },
     { href: "/oblasti-prava", label: t.nav.practice },
     { href: "/blog", label: t.nav.blog },
+    { href: "/konsultacije", label: t.nav.consult },
     { href: "/kontakt", label: t.nav.contact },
   ];
 
@@ -23,20 +42,20 @@ export default function Footer() {
       {/* Main body */}
       <div className="bg-[#0b1524]">
         <div className="max-w-6xl mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 items-start">
 
-            {/* Brand — bigger logo */}
+            {/* ── 1. Brand ─────────────────────────────────────────────── */}
             <div>
-              <div className="flex items-center gap-4 mb-4">
+              <div className="flex items-center gap-3 mb-4">
                 <div
-                  className="w-16 h-16 rounded-full overflow-hidden ring-2 ring-[#c9a84c]/25 shrink-0"
+                  className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-[#c9a84c]/25 shrink-0"
                   style={{ backgroundColor: "#3c3d3f" }}
                 >
                   <Image
                     src="/logo.png"
                     alt="Logo"
-                    width={64}
-                    height={64}
+                    width={56}
+                    height={56}
                     className="object-cover w-full h-full"
                   />
                 </div>
@@ -44,23 +63,23 @@ export default function Footer() {
                   <span className="text-[#c9a84c] font-heading font-semibold text-[11px] uppercase tracking-widest block mb-1">
                     Advokat
                   </span>
-                  <span className="text-white font-heading font-bold text-base tracking-wide block">
+                  <span className="text-white font-heading font-bold text-sm tracking-wide block">
                     Dejan Jovanović
                   </span>
                 </div>
               </div>
-              <p className="text-gray-500 text-xs leading-relaxed max-w-[220px]">
+              <p className="text-gray-500 text-xs leading-relaxed">
                 {t.footer.tagline}
               </p>
             </div>
 
-            {/* Navigation */}
+            {/* ── 2. Navigation ─────────────────────────────────────────── */}
             <div>
               <h4 className="text-[#c9a84c] font-semibold text-[10px] uppercase tracking-widest mb-5">
                 {t.footer.navLabel}
               </h4>
               <ul className="space-y-2.5">
-                {links.map(({ href, label }) => (
+                {navLinks.map(({ href, label }) => (
                   <li key={href}>
                     <Link
                       href={href}
@@ -74,7 +93,35 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Contact */}
+            {/* ── 3. Blog ───────────────────────────────────────────────── */}
+            <div>
+              <h4 className="text-[#c9a84c] font-semibold text-[10px] uppercase tracking-widest mb-5">
+                Blog
+              </h4>
+              <ul className="space-y-2.5">
+                {blogPosts.map((post) => (
+                  <li key={post.href}>
+                    <Link
+                      href={post.href}
+                      className="text-gray-400 hover:text-[#c9a84c] transition-colors text-xs flex items-start gap-2 group leading-relaxed"
+                    >
+                      <span className="w-1 h-1 bg-[#c9a84c]/30 group-hover:bg-[#c9a84c] transition-colors shrink-0 mt-1" />
+                      {lang === "sr" ? post.sr : post.en}
+                    </Link>
+                  </li>
+                ))}
+                <li>
+                  <Link
+                    href="/blog"
+                    className="text-[#c9a84c]/60 hover:text-[#c9a84c] transition-colors text-[10px] uppercase tracking-widest flex items-center gap-1.5 mt-1"
+                  >
+                    {lang === "sr" ? "Svi članci →" : "All posts →"}
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* ── 4. Contact ────────────────────────────────────────────── */}
             <div>
               <h4 className="text-[#c9a84c] font-semibold text-[10px] uppercase tracking-widest mb-5">
                 {t.footer.contactLabel}
@@ -103,7 +150,7 @@ export default function Footer() {
                     dejanjovanovic.adv@gmail.com
                   </a>
                 </li>
-                <li className="text-gray-600 flex items-center gap-2.5 pt-0.5">
+                <li className="flex items-center gap-2.5 text-gray-600 pt-0.5">
                   <svg className="w-3.5 h-3.5 text-[#c9a84c]/50 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -111,11 +158,12 @@ export default function Footer() {
                 </li>
               </ul>
             </div>
+
           </div>
         </div>
       </div>
 
-      {/* Copyright bar — even darker */}
+      {/* Copyright bar */}
       <div className="bg-[#050d18] py-4 text-center text-[11px] text-gray-600 border-t border-white/[0.04]">
         {t.footer.copyright}
       </div>

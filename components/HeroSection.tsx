@@ -73,7 +73,7 @@ export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [inSection, setInSection] = useState(false);
 
-  // Logo parallax (percentage-based)
+  // Logo parallax (percentage-based, kept from before)
   const rawX = useMotionValue(50);
   const rawY = useMotionValue(50);
   const springX = useSpring(rawX, { stiffness: 50, damping: 18 });
@@ -81,15 +81,34 @@ export default function HeroSection() {
   const logoX = useTransform(springX, [0, 100], [20, -20]);
   const logoY = useTransform(springY, [0, 100], [12, -12]);
 
-  // Custom cursor — pixel position within section
+  // ── Cursor system (pixel coordinates relative to section) ────────────────
   const cursorX = useMotionValue(-300);
   const cursorY = useMotionValue(-300);
-  // Ring lags behind cursor (spring delay = organic feel)
+
+  // Ring springs behind the cursor
   const ringX = useSpring(cursorX, { stiffness: 160, damping: 22 });
   const ringY = useSpring(cursorY, { stiffness: 160, damping: 22 });
-  // Glow lags even more (very soft follow)
+
+  // Glow drifts even more lazily
   const glowX = useSpring(cursorX, { stiffness: 55, damping: 18 });
   const glowY = useSpring(cursorY, { stiffness: 55, damping: 18 });
+
+  // ── KEY FIX: on mouse ENTER, instantly teleport all springs to the
+  //    entry position so the ring doesn't travel from (-300,-300) across
+  //    the whole hero before becoming visible ────────────────────────────────
+  function handleMouseEnter(e: React.MouseEvent<HTMLElement>) {
+    const rect = sectionRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const px = e.clientX - rect.left;
+    const py = e.clientY - rect.top;
+    cursorX.set(px);
+    cursorY.set(py);
+    ringX.set(px);   // instant — no spring travel
+    ringY.set(py);
+    glowX.set(px);
+    glowY.set(py);
+    setInSection(true);
+  }
 
   function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
     const rect = sectionRef.current?.getBoundingClientRect();
@@ -98,9 +117,14 @@ export default function HeroSection() {
     const py = e.clientY - rect.top;
     cursorX.set(px);
     cursorY.set(py);
-    // Logo parallax still uses percentage
     rawX.set((px / rect.width) * 100);
     rawY.set((py / rect.height) * 100);
+  }
+
+  function handleMouseLeave() {
+    setInSection(false);
+    cursorX.set(-300);
+    cursorY.set(-300);
   }
 
   const stats = [
@@ -113,12 +137,8 @@ export default function HeroSection() {
     <section
       ref={sectionRef}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setInSection(true)}
-      onMouseLeave={() => {
-        setInSection(false);
-        cursorX.set(-300);
-        cursorY.set(-300);
-      }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       style={{ cursor: inSection ? "none" : "auto" }}
       className="relative min-h-[90vh] bg-[#1a2744] flex items-center overflow-hidden"
     >
@@ -145,7 +165,7 @@ export default function HeroSection() {
         <Image src="/logo.png" alt="" width={420} height={420} className="opacity-[0.07]" aria-hidden draggable={false} />
       </motion.div>
 
-      {/* Large glow — drifts slowly after cursor */}
+      {/* Glow orb — drifts lazily after cursor */}
       <motion.div
         className="absolute pointer-events-none rounded-full"
         style={{
@@ -159,7 +179,7 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Cursor ring — springs after cursor */}
+      {/* Cursor ring — springs behind cursor */}
       <motion.div
         className="absolute pointer-events-none z-30 rounded-full"
         style={{
@@ -240,7 +260,7 @@ export default function HeroSection() {
           {t.hero.sub}
         </motion.p>
 
-        {/* CTA buttons — shimmer, no magnetic */}
+        {/* CTA buttons — shimmer, fixed position */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -264,23 +284,29 @@ export default function HeroSection() {
           </Link>
         </motion.div>
 
-        {/* Stats — glassmorphism panel, inside content (not at bottom edge) */}
+        {/* ── Stats — glassmorphism panel, responsive ────────────────────────
+            Mobile:  stacked vertically (flex-col), full width
+            Desktop: horizontal row (flex-row), auto width             */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.88, duration: 0.6 }}
-          className="flex justify-center mt-14"
+          className="flex justify-center mt-14 px-4 sm:px-0"
         >
-          <div className="inline-flex backdrop-blur-sm bg-white/[0.05] border border-white/[0.12]">
+          <div className="flex flex-col sm:flex-row w-full sm:w-auto backdrop-blur-sm bg-white/[0.05] border border-white/[0.12]">
             {stats.map(({ to, suffix, label, dur }, i) => (
               <div
                 key={label}
-                className={`px-9 py-5 text-center ${i > 0 ? "border-l border-white/[0.12]" : ""}`}
+                className={`flex-1 sm:flex-none px-6 sm:px-9 py-4 sm:py-5 text-center ${
+                  i > 0
+                    ? "border-t sm:border-t-0 sm:border-l border-white/[0.12]"
+                    : ""
+                }`}
               >
-                <div className="text-[#c9a84c] font-heading font-bold text-[1.75rem] leading-none">
+                <div className="text-[#c9a84c] font-heading font-bold text-2xl sm:text-[1.75rem] leading-none">
                   <CountUp to={to} suffix={suffix} duration={dur} />
                 </div>
-                <div className="text-gray-400 text-[10px] mt-1.5 uppercase tracking-widest whitespace-nowrap">
+                <div className="text-gray-400 text-[10px] mt-1.5 uppercase tracking-widest">
                   {label}
                 </div>
               </div>
@@ -289,14 +315,13 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Bottom wave — extended viewBox prevents 1px gap */}
+      {/* Bottom wave — viewBox extended to 42 + display:block to kill 1px gap */}
       <div className="absolute bottom-0 left-0 right-0 overflow-hidden" style={{ lineHeight: 0 }}>
         <svg
           viewBox="0 0 1440 42"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full block"
-          style={{ display: "block" }}
+          style={{ display: "block", width: "100%" }}
         >
           <path d="M0 42 L0 20 Q360 0 720 20 Q1080 42 1440 20 L1440 42 Z" fill="white" />
         </svg>
