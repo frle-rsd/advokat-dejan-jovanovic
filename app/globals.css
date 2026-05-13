@@ -29,17 +29,56 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-playfair), Georgia, serif;
 }
 
-/* Gold text selection */
-::selection {
-  background: #c9a84c;
-  color: #1a2744;
-}
-::-moz-selection {
-  background: #c9a84c;
-  color: #1a2744;
+/* ── Gold text selection ───────────────────────────────────────────────────── */
+::selection      { background: #c9a84c; color: #1a2744; }
+::-moz-selection { background: #c9a84c; color: #1a2744; }
+
+/* ── Shimmer sweep — light streak that races across a button on hover ─────── */
+@keyframes shimmer-sweep {
+  0%   { transform: translateX(-160%) skewX(-18deg); }
+  100% { transform: translateX(260%)  skewX(-18deg); }
 }
 
-/* Preserve 3D for tilt cards */
-.preserve-3d {
-  transform-style: preserve-3d;
+/* Gold-on-dark primary button */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 45%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+  transform: translateX(-160%) skewX(-18deg);
+  pointer-events: none;
+}
+.btn-shimmer:hover::after {
+  animation: shimmer-sweep 0.55s ease forwards;
+}
+
+/* Outline / ghost button variant */
+.btn-shimmer-outline {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer-outline::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 45%;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.22), transparent);
+  transform: translateX(-160%) skewX(-18deg);
+  pointer-events: none;
+}
+.btn-shimmer-outline:hover::after {
+  animation: shimmer-sweep 0.55s ease forwards;
+}
+
+/* ── Icon lift — subtle scale+translate used on icon boxes ─────────────────── */
+.icon-lift {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.icon-lift:hover {
+  transform: translateY(-4px) scale(1.08);
 }

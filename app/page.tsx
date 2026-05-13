@@ -35,7 +35,7 @@ export default function Home() {
                   alt="Advokat Dejan Jovanović"
                   width={480}
                   height={640}
-                  className="w-full h-auto object-contain"
+                  className="w-full h-auto object-contain transition-transform duration-500 ease-out hover:scale-[1.03]"
                 />
               </div>
               <div className="absolute -bottom-5 -right-5 w-28 h-28 border-4 border-[#c9a84c]/50 pointer-events-none" />
@@ -62,7 +62,7 @@ export default function Home() {
               <p className="text-gray-600 leading-relaxed mb-8">{a.p2}</p>
               <Link
                 href="/o-meni"
-                className="inline-block bg-[#1a2744] text-white font-semibold px-8 py-3 text-sm uppercase tracking-wider hover:bg-[#243560] transition-colors duration-200"
+                className="btn-shimmer inline-block bg-[#1a2744] text-white font-semibold px-8 py-3 text-sm uppercase tracking-wider hover:bg-[#243560] transition-colors duration-200"
               >
                 {a.cta}
               </Link>
@@ -112,7 +112,7 @@ export default function Home() {
               <p className="text-gray-300 text-lg leading-relaxed mb-8">{c.sub}</p>
               <Link
                 href="/kontakt"
-                className="self-start inline-flex items-center gap-2 bg-[#c9a84c] text-[#1a2744] font-semibold px-8 py-4 text-sm uppercase tracking-wider hover:bg-[#d4b561] active:scale-95 transition-all duration-200"
+                className="btn-shimmer self-start inline-flex items-center gap-2 bg-[#c9a84c] text-[#1a2744] font-semibold px-8 py-4 text-sm uppercase tracking-wider hover:bg-[#d4b561] active:scale-95 transition-all duration-200"
               >
                 {c.cta}
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
