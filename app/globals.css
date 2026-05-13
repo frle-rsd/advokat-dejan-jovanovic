@@ -28,3 +28,18 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-playfair), Georgia, serif;
 }
+
+/* Gold text selection */
+::selection {
+  background: #c9a84c;
+  color: #1a2744;
+}
+::-moz-selection {
+  background: #c9a84c;
+  color: #1a2744;
+}
+
+/* Preserve 3D for tilt cards */
+.preserve-3d {
+  transform-style: preserve-3d;
+}

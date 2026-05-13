@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { useLanguage } from "@/components/LanguageContext";
 
 function FlagSR() {
@@ -35,6 +36,10 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // Scroll progress bar
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", onScroll);
@@ -61,6 +66,11 @@ export default function Navbar() {
           : "bg-[#1a2744]/98 backdrop-blur-md"
       }`}
     >
+      {/* Scroll progress bar */}
+      <motion.div
+        style={{ scaleX, transformOrigin: "left" }}
+        className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#c9a84c] z-50"
+      />
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-6">
 
         {/* Logo only */}
