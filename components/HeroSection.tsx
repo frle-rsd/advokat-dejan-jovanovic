@@ -85,17 +85,10 @@ export default function HeroSection() {
   const cursorX = useMotionValue(-300);
   const cursorY = useMotionValue(-300);
 
-  // Ring springs behind the cursor
-  const ringX = useSpring(cursorX, { stiffness: 160, damping: 22 });
-  const ringY = useSpring(cursorY, { stiffness: 160, damping: 22 });
-
-  // Glow drifts even more lazily
+  // Glow drifts lazily behind the cursor for a soft ambient effect
   const glowX = useSpring(cursorX, { stiffness: 55, damping: 18 });
   const glowY = useSpring(cursorY, { stiffness: 55, damping: 18 });
 
-  // ── KEY FIX: on mouse ENTER, instantly teleport all springs to the
-  //    entry position so the ring doesn't travel from (-300,-300) across
-  //    the whole hero before becoming visible ────────────────────────────────
   function handleMouseEnter(e: React.MouseEvent<HTMLElement>) {
     const rect = sectionRef.current?.getBoundingClientRect();
     if (!rect) return;
@@ -103,8 +96,6 @@ export default function HeroSection() {
     const py = e.clientY - rect.top;
     cursorX.set(px);
     cursorY.set(py);
-    ringX.set(px);   // instant — no spring travel
-    ringY.set(py);
     glowX.set(px);
     glowY.set(py);
     setInSection(true);
@@ -180,35 +171,20 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Cursor ring — springs behind cursor, fades in on entry */}
+      {/* Cursor ring — snaps directly to cursor, fades in on entry */}
       <motion.div
         className="absolute pointer-events-none z-20 rounded-full"
         animate={{ opacity: inSection ? 1 : 0 }}
         transition={{ duration: 0.2 }}
         style={{
-          x: ringX,
-          y: ringY,
+          x: cursorX,
+          y: cursorY,
           translateX: "-50%",
           translateY: "-50%",
           width: 36,
           height: 36,
           border: "1px solid rgba(201,168,76,0.55)",
           boxShadow: "0 0 16px 4px rgba(201,168,76,0.15)",
-        }}
-      />
-
-      {/* Cursor dot — snaps instantly, fades in on entry */}
-      <motion.div
-        className="absolute pointer-events-none z-20 rounded-full bg-[#c9a84c]"
-        animate={{ opacity: inSection ? 1 : 0 }}
-        transition={{ duration: 0.15 }}
-        style={{
-          x: cursorX,
-          y: cursorY,
-          translateX: "-50%",
-          translateY: "-50%",
-          width: 5,
-          height: 5,
         }}
       />
 
