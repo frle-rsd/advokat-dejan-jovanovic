@@ -10,7 +10,7 @@ export default function KonsultacijePage() {
       badge: "Online konsultacije",
       heading: "Postavite pitanje",
       sub: "Pišite mi direktno — odgovaram radnim danima od 09:00 do 17:00.",
-      step: "Kliknite na \"Nova konverzacija\" u chatu ispod da započnete razgovor",
+      step: "Ukucajte poruku u chatu ispod da započnete razgovor",
       note: "Ako sam trenutno nedostupan, ostavite poruku — odgovoriti ću čim budem u mogućnosti.",
       cards: [
         { icon: "💬", title: "Direktna poruka", desc: "Bez registracije. Ukucajte pitanje i pošaljite." },
@@ -22,7 +22,7 @@ export default function KonsultacijePage() {
       badge: "Online consultations",
       heading: "Ask a question",
       sub: "Write to me directly — I respond on business days from 09:00 to 17:00.",
-      step: "Click \"New Conversation\" in the chat below to start",
+      step: "Type your message in the chat below to start a conversation",
       note: "If I'm unavailable, leave a message — I'll get back to you as soon as possible.",
       cards: [
         { icon: "💬", title: "Direct message", desc: "No registration needed. Type your question and send." },
@@ -34,8 +34,7 @@ export default function KonsultacijePage() {
 
   const c = content[lang];
 
-  // Tawk.to supports ?lang= parameter in the embed URL
-  const chatUrl = `https://tawk.to/chat/6a03ad848acb811c3685583f/1jof5rje8?lang=${lang === "sr" ? "sr" : "en"}`;
+  const chatUrl = `https://go.crisp.chat/chat/embed/?website_id=0b0d4f3d-6edd-4e21-9716-41db7b01a1b4&locale=${lang === "sr" ? "sr" : "en"}`;
 
   return (
     <>
