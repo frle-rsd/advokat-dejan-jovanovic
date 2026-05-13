@@ -36,7 +36,7 @@ function TiltCard({ children }: { children: React.ReactNode }) {
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      className="relative group"
+      className="relative group h-full"
     >
       {children}
 
@@ -129,16 +129,19 @@ export default function PracticeAreas() {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {t.practiceAreas.items.map((area, i) => (
-            <motion.div key={area.title} variants={cardVariants}>
+            /* h-full on every wrapper layer so all cards in a row are equal height */
+            <motion.div key={area.title} variants={cardVariants} className="h-full">
               <TiltCard>
-                <div className="bg-white p-7 border border-gray-100 hover:shadow-xl hover:border-[#c9a84c]/40 transition-all duration-300 group cursor-default h-full">
-                  <div className="w-14 h-14 bg-[#1a2744]/5 flex items-center justify-center text-[#c9a84c] mb-5 group-hover:bg-[#1a2744] transition-colors duration-300">
-                    {icons[i]}
+                <div className="bg-white p-7 border border-gray-100 hover:shadow-xl hover:border-[#c9a84c]/40 transition-all duration-300 group cursor-default h-full flex flex-col">
+                  <div className="icon-lift w-14 h-14 bg-[#1a2744]/5 flex items-center justify-center text-[#c9a84c] mb-5 group-hover:bg-[#1a2744] transition-colors duration-300 shrink-0">
+                    <div className="transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110">
+                      {icons[i]}
+                    </div>
                   </div>
                   <h3 className="font-heading font-semibold text-lg text-[#1a2744] mb-3">
                     {area.title}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{area.desc}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed flex-1">{area.desc}</p>
                 </div>
               </TiltCard>
             </motion.div>
